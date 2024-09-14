@@ -4,11 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        form {
+            display: none;
+        }
+    </style>
 </head>
-    <script>
-        
-    </script>
+
 <body>
+    <button>New Book</button>
+    <form action="">
+        <label for="book">Book:</label>
+        <input id="book" type="text">
+        <label for="author">Author:</label>
+        <input id="author" type="text">
+        <label for="pages">Pages:</label> 
+        <input id="pages" type="text">
+    </form>
     
 </body>
+<script>
+    const btn = document.querySelector('button')
+    const body = document.querySelector('body')
+    const form = document.querySelector('form')
+
+    btn.addEventListener('click', function (e) {
+        form.style.display = 'block'
+    }) 
+
+</script>
 </html>
