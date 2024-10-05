@@ -14,12 +14,19 @@
 <body>
     <button>New Book</button>
     <form action="">
-        <label for="book">Book:</label>
-        <input id="book" type="text">
-        <label for="author">Author:</label>
-        <input id="author" type="text">
-        <label for="pages">Pages:</label> 
-        <input id="pages" type="text">
+        <div class="info">
+            <label for="book">Book:</label>
+            <input id="book" type="text">
+            <label for="author">Author:</label>
+            <input id="author" type="text">
+            <label for="pages">Pages:</label> 
+            <input id="pages" type="text">
+            <label for="status">Read</label>
+            <input id="status" type="radio" value="read" name="status">
+            <label for="status">Not Read</label>
+            <input id="status" type="radio" value="not read" name="status">
+        </div>
+        <input id="submit" type="submit">
     </form>
     
 </body>
@@ -27,10 +34,36 @@
     const btn = document.querySelector('button')
     const body = document.querySelector('body')
     const form = document.querySelector('form')
+    const submit = document.querySelector('#submit')
+    const infoValue = document.querySelectorAll('.info > input')
+
+   
+
+    submit.addEventListener('click', function (e) {
+        event.preventDefault();
+        for (const info of infoValue) {
+        console.log(info.value)
+    }
+        
+
+    })
 
     btn.addEventListener('click', function (e) {
         form.style.display = 'block'
-    }) 
+    })
 
+    const myLibrary = [];
+
+
+    function Book(name, author, pages, status) {
+        this.name = name; 
+        this.author = author;
+        this.pages = pages;
+        this.status = status;
+    }
+
+    function addBookToLibrary() {
+
+    }
 </script>
 </html>
