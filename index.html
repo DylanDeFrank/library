@@ -41,9 +41,11 @@
 
     submit.addEventListener('click', function (e) {
         event.preventDefault();
-        for (const info of infoValue) {
-            infoCatch.push(info.value)
-    } return console.log(infoCatch)
+        for (let info of infoValue) {
+            for (let key in book) {
+                book[key] = info.value
+            }
+    } return console.log(book)
         
 
     })
@@ -51,6 +53,7 @@
     btn.addEventListener('click', function (e) {
         form.style.display = 'block'
     })
+
 
     let infoCatch = []
     const myLibrary = [];
@@ -65,6 +68,7 @@
 
     const book = new Book('LOTR', 'Tolkein', '355', 'not read')
     const bookTwo = new Book('BOTNS', 'Wolfe', '1000', 'read')
+    let bookThree = new Book()
 
     function addBookToLibrary() {
 
