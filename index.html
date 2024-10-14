@@ -36,28 +36,30 @@
     const form = document.querySelector('form')
     const submit = document.querySelector('#submit')
     const infoValue = document.querySelectorAll('.info > input')
-
-   
+    const myLibrary = []
+    let clickCount = 0
 
     submit.addEventListener('click', function (e) {
         event.preventDefault();
-        for (let info of infoValue) {
-            for (let key in book) {
-                book[key] = info.value
-            }
-    } return console.log(book)
-        
-
+        let name = document.getElementById('book').value
+        let author = document.getElementById('author').value
+        let pages = document.getElementById('pages').value
+        let status = document.getElementById('status').value
+        let book = new Book(name, author, pages, status)
+        addBookToLibrary(book)
+        console.log(myLibrary)
+        infoValue.forEach(input => input.value = '')
     })
 
     btn.addEventListener('click', function (e) {
-        form.style.display = 'block'
+        clickCount++
+        if (clickCount % 2 === 1) {
+            form.style.display = 'block'
+
+        } else { 
+            form.style.display = 'none'
+        }
     })
-
-
-    let infoCatch = []
-    const myLibrary = [];
-
 
     function Book(name, author, pages, status) {
         this.name = name; 
@@ -65,12 +67,8 @@
         this.pages = pages;
         this.status = status;
     }
-
-    const book = new Book('LOTR', 'Tolkein', '355', 'not read')
-    const bookTwo = new Book('BOTNS', 'Wolfe', '1000', 'read')
-    let bookThree = new Book()
-
-    function addBookToLibrary() {
+    function addBookToLibrary(item) { 
+        return myLibrary.push(item)
 
     }
 </script>
