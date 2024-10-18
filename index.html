@@ -8,6 +8,28 @@
         form {
             display: none;
         }
+
+
+        .container {
+            display: flex;
+        }
+        .bookItem {
+            border: 1px solid black;
+            height: 200px;
+            width: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+        }
+        .text {
+            
+        }
+        .remove {
+            border-radius: 20px;
+            align-self: flex-end;
+        }
     </style>
 </head>
 
@@ -22,12 +44,13 @@
             <label for="pages">Pages:</label> 
             <input id="pages" type="text">
             <label for="status">Read</label>
-            <input id="status" type="radio" value="read" name="status">
+            <input id="read" type="radio" value="read" name="status">
             <label for="status">Not Read</label>
-            <input id="status" type="radio" value="not read" name="status">
+            <input id="not read" type="radio" value="not read" name="status">
         </div>
         <input id="submit" type="submit">
     </form>
+    <div class="container"></div>
     
 </body>
 <script>
@@ -35,20 +58,36 @@
     const body = document.querySelector('body')
     const form = document.querySelector('form')
     const submit = document.querySelector('#submit')
-    const infoValue = document.querySelectorAll('.info > input')
+    const infoValue = document.querySelectorAll(".info > input:not([type='radio'])")
     const myLibrary = []
     let clickCount = 0
+    const container = document.querySelector('.container')
+    let selector = ''
+    let selectorTwo = ''
 
     submit.addEventListener('click', function (e) {
         event.preventDefault();
+        const bookItem = document.createElement('div')
+        bookItem.className = 'bookItem'
+        container.appendChild(bookItem)
+        selector = bookItem
         let name = document.getElementById('book').value
         let author = document.getElementById('author').value
         let pages = document.getElementById('pages').value
-        let status = document.getElementById('status').value
+        function checkStatus() {
+            let check = document.getElementById('read').checked
+        if (check === true) {
+            return document.getElementById('read').value
+        } else {
+            return document.getElementById('not read').value
+        }}
+        let status = checkStatus() 
         let book = new Book(name, author, pages, status)
         addBookToLibrary(book)
-        console.log(myLibrary)
+        addLibraryToDisplay(book)
         infoValue.forEach(input => input.value = '')
+        
+        
     })
 
     btn.addEventListener('click', function (e) {
@@ -71,5 +110,26 @@
         return myLibrary.push(item)
 
     }
+    function addLibraryToDisplay(novel) {
+            let x = Object.values(novel)
+            for (detail of x) {
+                const text = document.createElement('div')
+                text.className = 'text'
+                text.textContent = detail
+                selector.appendChild(text)
+            }
+            const remove = document.createElement('button')
+            remove.className = 'remove'
+            remove.textContent = '-'
+            selector.appendChild(remove)
+            selectorTwo = remove
+            selectorTwo.addEventListener('click', function (e) {
+        container.removeChild(selector)
+
+    })
+        
+            
+        }
+
 </script>
 </html>
