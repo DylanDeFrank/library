@@ -23,9 +23,8 @@
             align-items: center;
             padding: 10px;
         }
-        .text {
-            
-        }
+    
+        
         .remove {
             border-radius: 20px;
             align-self: flex-end;
@@ -63,7 +62,8 @@
     let clickCount = 0
     const container = document.querySelector('.container')
     let selector = ''
-    let selectorTwo = ''
+    
+    
 
     submit.addEventListener('click', function (e) {
         event.preventDefault();
@@ -122,14 +122,16 @@
             remove.className = 'remove'
             remove.textContent = '-'
             selector.appendChild(remove)
-            selectorTwo = remove
-            selectorTwo.addEventListener('click', function (e) {
-        container.removeChild(selector)
-
-    })
         
-            
-        }
+
+    remove.addEventListener('click', function (e) {
+        const subtract = e.target.parentElement
+        container.removeChild(subtract)
+        
+    })}
+
+
+    
 
 </script>
 </html>
