@@ -25,10 +25,12 @@
         }
     
         
-        .remove {
+        .remove,
+        .status {
             border-radius: 20px;
             align-self: flex-end;
         }
+        
     </style>
 </head>
 
@@ -62,6 +64,8 @@
     let clickCount = 0
     const container = document.querySelector('.container')
     let selector = ''
+    let targetStatus = ''
+    let clickCountTwo = 0
     
     
 
@@ -106,6 +110,14 @@
         this.pages = pages;
         this.status = status;
     }
+    Book.prototype.changeStatus = function() {
+        if (this.status == 'read') {
+            this.status = 'not read'
+            return 'not read'
+        } else {
+            this. status = 'read' 
+            return 'read'}
+    }
     function addBookToLibrary(item) { 
         return myLibrary.push(item)
 
@@ -128,7 +140,22 @@
         const subtract = e.target.parentElement
         container.removeChild(subtract)
         
-    })}
+    })
+    const status = document.createElement('button')
+    status.className = 'status'
+    selector.appendChild(status)
+
+    status.addEventListener('click', function (e) {
+        clickCountTwo ++
+        const target = e.target.parentElement.querySelector(':nth-child(4)')
+        targetStatus = target
+        if (clickCountTwo > 0) {
+        let change = novel.changeStatus()
+        target.textContent = change
+        }
+
+    })
+}
 
 
     
